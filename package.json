@@ -1,0 +1,37 @@
+{
+  "name": "HomeAutomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesFenton/HomeAutomation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamesFenton/HomeAutomation/issues"
+  },
+  "homepage": "https://github.com/JamesFenton/HomeAutomation#readme",
+  "devDependencies": {
+    "@types/chart.js": "^2.9.22",
+    "@types/lodash": "^4.14.157",
+    "@types/react": "^16.9.42",
+    "@types/react-dom": "^16.9.8",
+    "parcel": "^2.0.0-beta.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "chart.js": "^2.9.3",
+    "lodash": "^4.17.19",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.2.1",
+    "react-dom": "^16.13.1"
+  }
+}
