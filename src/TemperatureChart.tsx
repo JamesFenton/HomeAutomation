@@ -24,6 +24,9 @@ export default class TemperatureList extends Component<Props, {}> {
   componentDidMount() {
     const data = this.createData();
     const ctx = this.chartRef.current;
+    //const scaleColor = "#cccccc";
+    const scaleColor = "#666";
+    const deskSeriesColor = "rgb(52, 152, 219)";
     this.chart = new Chart(ctx, {
       type: "line",
       data: {
@@ -32,8 +35,8 @@ export default class TemperatureList extends Component<Props, {}> {
             label: "Desk",
             fill: false,
             data: data,
-            backgroundColor: "#3366ff",
-            borderColor: "#3366ff",
+            backgroundColor: deskSeriesColor,
+            borderColor: deskSeriesColor,
           },
         ],
       },
@@ -45,6 +48,10 @@ export default class TemperatureList extends Component<Props, {}> {
               scaleLabel: {
                 display: true,
                 labelString: "Time",
+                fontColor: scaleColor,
+              },
+              ticks: {
+                fontColor: scaleColor,
               },
             },
           ],
@@ -52,10 +59,12 @@ export default class TemperatureList extends Component<Props, {}> {
             {
               ticks: {
                 beginAtZero: true,
+                fontColor: scaleColor,
               },
               scaleLabel: {
                 display: true,
                 labelString: "Temperature (°C)",
+                fontColor: scaleColor,
               },
             },
           ],

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./bootstrap.css";
 import { TemperatureReading, getTemperatures } from "./api";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import TemperatureChart from "./TemperatureChart";
@@ -20,19 +20,13 @@ export default class App extends Component<{}, AppState> {
 
   render() {
     return (
-      <Container>
-        <Row>
-          <Col md={1}></Col>
-          <Col>
-            <Card>
-              <Card.Header>Temperature Indoors</Card.Header>
-              <Card.Body>
-                <TemperatureChart readings={this.state.readings} />
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={1}></Col>
-        </Row>
+      <Container style={{ marginTop: 15 }}>
+        <Card text="white">
+          <Card.Header as="h5">Temperature History</Card.Header>
+          <Card.Body>
+            <TemperatureChart readings={this.state.readings} />
+          </Card.Body>
+        </Card>
       </Container>
     );
   }
