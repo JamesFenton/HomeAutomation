@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { TemperatureReading, getTemperatures } from "./api";
 import Chart from "chart.js";
+import { IDeviceReading } from "../server/DeviceReading";
 
 interface Props {
-  readings: TemperatureReading[];
+  readings: IDeviceReading[];
 }
 
 export default class TemperatureList extends Component<Props, {}> {
@@ -12,7 +12,7 @@ export default class TemperatureList extends Component<Props, {}> {
 
   createData() {
     return this.props.readings.map((r) => {
-      return { x: new Date(r.timestamp), y: r.temperature };
+      return { x: new Date(r.timestamp), y: r.value };
     });
   }
 

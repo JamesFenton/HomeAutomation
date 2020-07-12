@@ -1,5 +1,6 @@
 {
-  "name": "HomeAutomation",
+  "name": "home-automation",
+  "private": "true",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -28,7 +29,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "azure-storage": "^2.10.3",
-    "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",

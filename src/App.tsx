@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "./bootstrap.css";
-import { TemperatureReading, getTemperatures } from "./api";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { getTemperatures } from "./api";
+import { Container, Card } from "react-bootstrap";
 import TemperatureChart from "./TemperatureChart";
+import { IDeviceReading } from "../server/DeviceReading";
 
 interface AppState {
-  readings: TemperatureReading[];
+  readings: IDeviceReading[];
 }
 
 export default class App extends Component<{}, AppState> {

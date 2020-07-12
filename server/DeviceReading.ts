@@ -1,7 +1,5 @@
 export interface IDeviceReading {
-  PartitionKey: Date;
-  RowKey: string;
-  Timestamp: string;
-  Device: string;
-  Temperature: string;
+  timestamp: string;
+  device: string;
+  value: string;
 }

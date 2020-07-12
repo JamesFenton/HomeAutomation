@@ -1,6 +1,7 @@
 import { NowRequest, NowResponse } from "@vercel/node";
 import moment from "moment";
 import azure from "azure-storage";
+import _ from "lodash";
 import db from "../server/db";
 import { IDeviceReading } from "../server/DeviceReading";
 
@@ -20,6 +21,18 @@ export default function (req: NowRequest, res: NowResponse) {
       return res.send("Unexpected error occurred");
     }
 
-    res.send(result.entries);
+    const dtos = _(result.entries)
+      .map(convertTableEntityToDto)
+      .orderBy((x) => x.timestamp, "desc").value;
+    res.send(dtos);
   });
+}
+
+function convertTableEntityToDto(entity) {
+  const dto: IDeviceReading = {
+    timestamp: entity.Timestamp._,
+    device: entity.Device._,
+    value: entity.Temperature._,
+  };
+  return dto;
 }
