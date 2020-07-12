@@ -7,9 +7,11 @@ import { IDeviceReading } from "../server/DeviceReading";
 
 export default function (req: NowRequest, res: NowResponse) {
   const days = parseInt((req.query.from as string) || "30");
-  const from = moment().subtract(days, "days").toDate();
+  const from = moment().subtract(days, "days").format("YYYY-MM-dd");
 
-  const query = new azure.TableQuery().top(1000).where("Timestamp gt ?", from);
+  const query = new azure.TableQuery()
+    .top(1000)
+    .where("PartitionKey gt ?", from);
 
   db.queryEntities("temperature", query, null, function (
     error,
