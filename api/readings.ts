@@ -15,7 +15,10 @@ export default function (req: NowRequest, res: NowResponse) {
     result,
     response
   ) {
-    if (error) return res.send(error);
+    if (error) {
+      console.error(error);
+      return res.send("Unexpected error occurred");
+    }
 
     res.send(result.entries);
   });
