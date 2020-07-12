@@ -23,7 +23,8 @@ export default function (req: NowRequest, res: NowResponse) {
 
     const dtos = _(result.entries)
       .map(convertTableEntityToDto)
-      .orderBy((x) => x.timestamp, "desc").value;
+      .orderBy((x) => x.timestamp, "desc")
+      .value();
     res.send(dtos);
   });
 }
