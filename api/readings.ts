@@ -7,7 +7,7 @@ import { IDeviceReading } from "../server/DeviceReading";
 
 export default function (req: NowRequest, res: NowResponse) {
   const days = parseInt((req.query.from as string) || "30");
-  const from = moment().subtract(days, "days").format("YYYY-MM-dd");
+  const from = moment().subtract(days, "days").format("YYYY-MM-DD");
   console.log("Getting values from", from);
 
   const query = new azure.TableQuery()
