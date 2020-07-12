@@ -6,7 +6,7 @@ import { IDeviceReading } from "../server/DeviceReading";
 
 export default function (req: NowRequest, res: NowResponse) {
   const days = parseInt((req.query.from as string) || "30");
-  const from = moment().subtract(days, "days").toISOString();
+  const from = moment().subtract(days, "days").toDate();
 
   const query = new azure.TableQuery().top(1000).where("Timestamp gt ?", from);
 
