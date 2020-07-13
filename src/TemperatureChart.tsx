@@ -75,8 +75,8 @@ export default class TemperatureList extends Component<Props, {}> {
 
   render() {
     return (
-      <div style={{height: 800}}>
-        <canvas id="myChart" ref={this.chartRef}></canvas>
+      <div>
+        <canvas id="myChart" ref={this.chartRef} height="200"></canvas>
       </div>
     );
   }
