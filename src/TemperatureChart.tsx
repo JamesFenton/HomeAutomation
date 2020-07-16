@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 import { IDeviceReading } from "../server/DeviceReading";
+import Spinner from "react-bootstrap/Spinner";
 
 interface Props {
   readings: IDeviceReading[];
@@ -74,9 +75,20 @@ export default class TemperatureList extends Component<Props, {}> {
   }
 
   render() {
+    const isLoaded = this.props.readings.length > 0;
     return (
       <div>
-        <canvas id="myChart" ref={this.chartRef} height="200"></canvas>
+        {!isLoaded && (
+          <div className="text-center">
+            <Spinner animation="border" variant="light" />
+          </div>
+        )}
+        <canvas
+          id="myChart"
+          ref={this.chartRef}
+          height="200"
+          hidden={!isLoaded}
+        ></canvas>
       </div>
     );
   }

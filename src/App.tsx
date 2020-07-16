@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./bootstrap.css";
 import { getTemperatures } from "./api";
-import { Container, Card } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
 import TemperatureChart from "./TemperatureChart";
 import { IDeviceReading } from "../server/DeviceReading";
 
