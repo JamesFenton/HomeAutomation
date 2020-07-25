@@ -76,15 +76,13 @@ export default class TemperatureList extends Component<Props, {}> {
 
   render() {
     const isLoaded = this.props.readings.length > 0;
-    if (!isLoaded)
-      return (
-        <div className="text-center">
-          <Spinner animation="border" variant="light" />
-        </div>
-      );
-
     return (
       <div>
+        {!isLoaded && (
+          <div className="text-center">
+            <Spinner animation="border" variant="light" />
+          </div>
+        )}
         <canvas
           id="myChart"
           ref={this.chartRef}
