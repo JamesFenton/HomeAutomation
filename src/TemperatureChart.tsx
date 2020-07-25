@@ -86,7 +86,7 @@ export default class TemperatureList extends Component<Props, {}> {
         <canvas
           id="myChart"
           ref={this.chartRef}
-          height="200"
+          height="220"
           hidden={!isLoaded}
         ></canvas>
       </div>
