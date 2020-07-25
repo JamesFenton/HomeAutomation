@@ -6,7 +6,7 @@ import db from "../server/db";
 import { IDeviceReading } from "../server/DeviceReading";
 
 export default function (req: NowRequest, res: NowResponse) {
-  const days = parseInt((req.query.from as string) || "30");
+  const days = parseInt((req.query.from as string) || "10");
   const from = moment().subtract(days, "days").format("YYYY-MM-DD");
   console.log("Getting values from", from);
 
