@@ -1,95 +1,68 @@
-import React, { Component } from "react";
-import Chart from "chart.js";
+import React from "react";
+import { ChartData, ChartOptions } from "chart.js";
 import { IDeviceReading } from "../server/DeviceReading";
 import Spinner from "react-bootstrap/Spinner";
+import { Line } from "react-chartjs-2";
 
-interface Props {
-  readings: IDeviceReading[];
-}
+export default function ({ readings }: { readings: IDeviceReading[] }) {
+  const data = readings.map((r) => {
+    return { x: new Date(r.timestamp), y: r.value };
+  });
 
-export default class TemperatureList extends Component<Props, {}> {
-  chartRef = React.createRef<HTMLCanvasElement>();
-  chart: Chart;
+  //const scaleColor = "#cccccc";
+  const scaleColor = "#666";
+  const deskSeriesColor = "rgb(52, 152, 219)";
 
-  createData() {
-    return this.props.readings.map((r) => {
-      return { x: new Date(r.timestamp), y: r.value };
-    });
-  }
+  const chartData: ChartData = {
+    datasets: [
+      {
+        label: "Desk",
+        fill: false,
+        data: data,
+        backgroundColor: deskSeriesColor,
+        borderColor: deskSeriesColor,
+      },
+    ],
+  };
 
-  componentDidUpdate() {
-    this.chart.data.datasets[0].data = this.createData();
-    this.chart.update();
-  }
-
-  componentDidMount() {
-    const data = this.createData();
-    const ctx = this.chartRef.current;
-    //const scaleColor = "#cccccc";
-    const scaleColor = "#666";
-    const deskSeriesColor = "rgb(52, 152, 219)";
-    this.chart = new Chart(ctx, {
-      type: "line",
-      data: {
-        datasets: [
-          {
-            label: "Desk",
-            fill: false,
-            data: data,
-            backgroundColor: deskSeriesColor,
-            borderColor: deskSeriesColor,
+  const chartOptions: ChartOptions = {
+    scales: {
+      xAxes: [
+        {
+          type: "time",
+          scaleLabel: {
+            display: true,
+            labelString: "Time",
+            fontColor: scaleColor,
           },
-        ],
-      },
-      options: {
-        scales: {
-          xAxes: [
-            {
-              type: "time",
-              scaleLabel: {
-                display: true,
-                labelString: "Time",
-                fontColor: scaleColor,
-              },
-              ticks: {
-                fontColor: scaleColor,
-              },
-            },
-          ],
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                fontColor: scaleColor,
-              },
-              scaleLabel: {
-                display: true,
-                labelString: "Temperature (°C)",
-                fontColor: scaleColor,
-              },
-            },
-          ],
+          ticks: {
+            fontColor: scaleColor,
+          },
         },
-      },
-    });
-  }
+      ],
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+            fontColor: scaleColor,
+          },
+          scaleLabel: {
+            display: true,
+            labelString: "Temperature (°C)",
+            fontColor: scaleColor,
+          },
+        },
+      ],
+    },
+  };
 
-  render() {
-    const isLoaded = this.props.readings.length > 0;
+  const isLoaded = readings && readings.length > 0;
+  if (!isLoaded)
     return (
-      <div>
-        {!isLoaded && (
-          <div className="text-center">
-            <Spinner animation="border" variant="light" />
-          </div>
-        )}
-        <canvas
-          id="myChart"
-          ref={this.chartRef}
-          height="220"
-          hidden={!isLoaded}
-        ></canvas>
+      <div className="text-center">
+        <Spinner animation="border" variant="light" />
       </div>
     );
-  }
+
+  return <Line data={chartData} options={chartOptions} height={220} />;
 }

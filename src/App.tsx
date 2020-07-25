@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./bootstrap.css";
 import { getTemperatures } from "./api";
 import Container from "react-bootstrap/Container";
@@ -6,30 +6,21 @@ import Card from "react-bootstrap/Card";
 import TemperatureChart from "./TemperatureChart";
 import { IDeviceReading } from "../server/DeviceReading";
 
-interface AppState {
-  readings: IDeviceReading[];
-}
+export default function () {
+  const [readings, setReadings] = useState<IDeviceReading[]>([]);
 
-export default class App extends Component<{}, AppState> {
-  constructor(props) {
-    super(props);
-    this.state = { readings: [] };
-  }
+  useEffect(() => {
+    getTemperatures().then(setReadings);
+  }, []);
 
-  componentDidMount() {
-    getTemperatures().then((t) => this.setState({ readings: t }));
-  }
-
-  render() {
-    return (
-      <Container style={{ marginTop: 15 }}>
-        <Card text="white">
-          <Card.Header as="h5">Temperature History</Card.Header>
-          <Card.Body>
-            <TemperatureChart readings={this.state.readings} />
-          </Card.Body>
-        </Card>
-      </Container>
-    );
-  }
+  return (
+    <Container style={{ marginTop: 15 }}>
+      <Card text="white">
+        <Card.Header as="h5">Temperature History</Card.Header>
+        <Card.Body>
+          <TemperatureChart readings={readings} />
+        </Card.Body>
+      </Card>
+    </Container>
+  );
 }
