@@ -64,5 +64,5 @@ export default function ({ readings }: { readings: IDeviceReading[] }) {
       </div>
     );
 
-  return <Line data={chartData} options={chartOptions} height={220} />;
+  return <Line data={chartData} options={chartOptions} />;
 }
