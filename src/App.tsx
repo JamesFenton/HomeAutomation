@@ -14,7 +14,7 @@ export default function () {
   }, []);
 
   return (
-    <Container style={{ marginTop: 15 }}>
+    <Container fluid="lg" style={{ marginTop: 15 }}>
       <Card text="white">
         <Card.Header as="h5">Temperature History</Card.Header>
         <Card.Body>
