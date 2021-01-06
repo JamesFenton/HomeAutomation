@@ -28,7 +28,7 @@
     "parcel": "^2.0.0-beta.1"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "azure-storage": "^2.10.3",
     "chart.js": "^2.9.3",
     "express": "^4.17.1",
