@@ -30,7 +30,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "azure-storage": "^2.10.3",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
